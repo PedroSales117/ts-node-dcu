@@ -1,5 +1,3 @@
-import pino from 'pino';
-import { loggerOptions } from './configurations/logger';
 import Fastify, { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 import fastifyJwt from '@fastify/jwt';
 import { IRouter, IUseCallback } from '../../interfaces';
@@ -7,19 +5,14 @@ import { Result, Ok, Err } from '../../helpers/result.helper';
 import { AppDataSource } from '../../ormconfig';
 import logger from '../../utils/logger';
 
-export type AdapterRequest = FastifyRequest
-export type AdapterReply = FastifyReply
-
-/**
- * Configures the Pino logger with specific settings, including the log level and formatting options.
- */
-export const adapterLogger = pino(loggerOptions);
-
-
 /**
  * ServerAdapter provides an abstraction layer over the Fastify framework,
  * allowing for the easy setup and management of routes, middlewares, and server configuration.
  */
+
+export type AdapterRequest = FastifyRequest
+export type AdapterReply = FastifyReply
+
 export class ServerAdapter {
   private server: FastifyInstance; // The underlying Fastify server instance.
 
@@ -57,7 +50,7 @@ export class ServerAdapter {
 
     // Add a global error handler to manage uncaught exceptions during request processing.
     this.server.setErrorHandler((error, request, reply) => {
-      logger.error(`Error during request ${request.method} ${request.url}:`, error);
+      logger.error(`Error during request ${request.method} ${request.url}:`, { error });
 
       if (!reply.sent) {
         reply.status(500).send({ message: error.message || 'Internal Server Error' });
@@ -75,12 +68,14 @@ export class ServerAdapter {
    */
   async use(prefix: string, opts: IUseCallback): Promise<Result<void, string>> {
     try {
+      if (!opts || typeof opts !== 'function') {
+        throw new TypeError('Middleware must be a valid function');
+      }
       await this.server.register(opts, { prefix });
       return Ok(undefined);
     } catch (error) {
       return Err(
-        `Failed to use middleware: ${error instanceof Error ? error.message : String(error)
-        }`
+        `Failed to use middleware: ${error instanceof Error ? error.message : String(error)}`
       );
     }
   }
@@ -124,6 +119,12 @@ export class ServerAdapter {
     try {
       // Initialize the database connection using TypeORM's AppDataSource.
       await AppDataSource.initialize();
+
+      if (process.env.NODE_ENV !== 'production') {
+        logger.info(`Starting ------ ${process.env.NODE_ENV} ------ enviroment, happy debbuging.`)
+      } else {
+        logger.info(`Starting ------ ${process.env.NODE_ENV} ------ enviroment, time to get serious!`)
+      }
 
       // Start the Fastify server on the specified port.
       await this.server.listen({ host: '0.0.0.0', port });

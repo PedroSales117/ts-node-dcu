@@ -1,20 +1,9 @@
 import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from 'typeorm';
+import { IsString, IsNotEmpty, IsNumber, IsPositive, IsUrl, IsInt, Min } from 'class-validator';
 
 /**
- * Example entity to demonstrate how to define a TypeORM entity.
+ * Example entity to demonstrate how to define a TypeORM entity with validation.
  * This entity is not meant to be used in the actual database schema but serves as a reference.
- * 
- * @example
- * // Example usage:
- * const product = new Product();
- * product.name = 'Sample Product';
- * product.description = 'This is a sample product.';
- * product.price = 19.99;
- * product.imageUrl = 'http://example.com/sample.jpg';
- * product.stock = 100;
- * await product.save();
- * 
- * // Note: This entity does not affect the database and is for demonstration purposes only.
  */
 @Entity('example_products')
 export class ExampleProduct extends BaseEntity {
@@ -32,6 +21,8 @@ export class ExampleProduct extends BaseEntity {
      * @type {string}
      */
     @Column({ type: 'varchar' })
+    @IsString({ message: 'The name must be a string.' })
+    @IsNotEmpty({ message: 'The name is required.' })
     name!: string;
 
     /**
@@ -39,6 +30,8 @@ export class ExampleProduct extends BaseEntity {
      * @type {string}
      */
     @Column({ type: 'text' })
+    @IsString({ message: 'The description must be a string.' })
+    @IsNotEmpty({ message: 'The description is required.' })
     description!: string;
 
     /**
@@ -47,6 +40,8 @@ export class ExampleProduct extends BaseEntity {
      * @type {number}
      */
     @Column({ type: 'decimal', precision: 10, scale: 2 })
+    @IsNumber({}, { message: 'The price must be a number.' })
+    @IsPositive({ message: 'The price must be a positive number.' })
     price!: number;
 
     /**
@@ -54,6 +49,9 @@ export class ExampleProduct extends BaseEntity {
      * @type {string}
      */
     @Column({ type: 'varchar' })
+    @IsString({ message: 'The image URL must be a string.' })
+    @IsNotEmpty({ message: 'The image URL is required.' })
+    @IsUrl({}, { message: 'The image URL must be a valid URL.' })
     imageUrl!: string;
 
     /**
@@ -61,5 +59,7 @@ export class ExampleProduct extends BaseEntity {
      * @type {number}
      */
     @Column({ type: 'int' })
+    @IsInt({ message: 'The stock must be an integer.' })
+    @Min(0, { message: 'The stock cannot be negative.' })
     stock!: number;
 }

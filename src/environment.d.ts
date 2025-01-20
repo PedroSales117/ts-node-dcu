@@ -25,10 +25,10 @@ declare global {
             DB_PASSWORD: string;
 
             /**
-             * The environment in which the application is running (e.g., 'development', 'production').
+             * The environment in which the application is running (e.g., 'development', 'production' or 'test').
              * @type {string}
              */
-            NODE_ENV: 'development' | 'production';
+            NODE_ENV: 'development' | 'production' | 'test';
 
             /**
              * The database host, typically defined in the environment configuration.
