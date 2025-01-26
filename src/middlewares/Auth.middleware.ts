@@ -30,7 +30,7 @@ export class AuthMiddleware {
                 { headers: { Authorization: `Bearer ${token}` } }
             );
 
-            if (!response.data || !response.data.id) {
+            if (!response.data || !response.data.is_valid) {
                 reply.status(401).send({ message: "Invalid token" });
                 return;
             }
