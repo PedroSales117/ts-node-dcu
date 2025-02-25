@@ -19,7 +19,7 @@ interface LogConfig {
 
 /** Logger configuration settings */
 const LOG_CONFIG: LogConfig = {
-  maskedFields: ['password', 'token', 'authorization', 'secret'],
+  maskedFields: ['password', 'token', 'authorization', 'secret', 'id'],
   enabledLevels: {
     development: ['debug', 'info', 'warn', 'error', 'fatal'],
     production: ['warn', 'error', 'fatal'],
@@ -46,11 +46,13 @@ const maskSensitiveData = (data: any): any => {
   if (!data) return data;
 
   if (typeof data === 'object') {
-    const maskedData = { ...data };
+    const maskedData = Array.isArray(data) ? [...data] : { ...data };
+
     for (const key in maskedData) {
       if (LOG_CONFIG.maskedFields.includes(key.toLowerCase())) {
-        maskedData[key] = '******';
-      } else if (typeof maskedData[key] === 'object') {
+        maskedData[key] = typeof maskedData[key] === 'object' ? '******' : '******';
+      }
+      else if (typeof maskedData[key] === 'object' && maskedData[key] !== null) {
         maskedData[key] = maskSensitiveData(maskedData[key]);
       }
     }
