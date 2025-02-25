@@ -5,48 +5,105 @@
 declare global {
     namespace NodeJS {
         interface ProcessEnv {
+
+            // ===== Environment Configuration =====
             /**
              * The port number on which the server should listen.
-             * This variable is typically defined in the environment configuration.
              * @type {number}
              */
             PORT: number;
 
             /**
-             * The database username, typically defined in the environment configuration.
-             * @type {string}
-             */
-            DB_USERNAME: string;
-
-            /**
-             * The database password, typically defined in the environment configuration.
-             * @type {string}
-             */
-            DB_PASSWORD: string;
-
-            /**
-             * The environment in which the application is running (e.g., 'development', 'production' or 'test').
+             * The environment in which the application is running.
              * @type {string}
              */
             NODE_ENV: 'development' | 'production' | 'test';
 
+
+            // ===== Database Configuration =====
             /**
-             * The database host, typically defined in the environment configuration.
+             * The database host address.
              * @type {string}
              */
             DB_HOST: string;
 
             /**
-             * The database port, typically defined in the environment configuration.
-             * @type {string}
+             * The database port.
+             * @type {number}
              */
-            DB_PORT: string;
+            DB_PORT: number;
 
             /**
-             * The database name, typically defined in the environment configuration.
+             * The database username.
+             * @type {string}
+             */
+            DB_USERNAME: string;
+
+            /**
+             * The database password.
+             * @type {string}
+             */
+            DB_PASSWORD: string;
+
+            /**
+             * The database name.
              * @type {string}
              */
             DB_NAME: string;
+
+
+            // ===== Security and Encryption =====
+            /**
+             * Secret key used for JWT token generation and validation.
+             * @type {string}
+             */
+            JWT_SECRET: string;
+
+            /**
+             * Secret key used for cookie signing.
+             * @type {string}
+             */
+            COOKIE_SECRET: string;
+
+            /**
+             * Key used for general encryption purposes.
+             * @type {string}
+             */
+            ENCRYPTION_KEY: string;
+
+
+            // ===== CORS Configuration =====
+            /**
+             * Allowed origins for CORS (multiple origins).
+             * @type {string}
+             */
+            ALLOW_ORIGINS: string;
+
+
+            // ===== Rate Limiting Configuration =====
+            /**
+             * Rate limit for authenticated requests.
+             * @type {number}
+             */
+            AUTHENTICATED_LIMIT: number;
+
+            /**
+             * Rate limit for unauthenticated requests.
+             * @type {number}
+             */
+            UNAUTHENTICATED_LIMIT: number;
+
+            /**
+             * Time window for authenticated rate limits in minutes.
+             * @type {number}
+             */
+            AUTH_WINDOW_MINUTES: number;
+
+            /**
+             * Time window for unauthenticated rate limits in minutes.
+             * @type {number}
+             */
+            UNAUTH_WINDOW_MINUTES: number;
         }
     }
 }

@@ -1,9 +1,25 @@
 import { DataSource } from 'typeorm';
-/* import { ExampleProduct } from './entities/ExampleProduct'; */
+import { Root } from './modules/root/domain/entities/Root';
+import { AuthToken } from './modules/auth/domain/entities/AuthToken';
+import { User } from './modules/users/domain/entities/User';
+
+/**
+ * Validates the presence and types of required environment variable and throws an error if missing or invalid.
+ * Ensures that NODE_ENV is set correctly before proceeding.
+ */
+if (!process.env.NODE_ENV || (process.env.NODE_ENV !== 'development' && process.env.NODE_ENV !== 'production')) {
+  throw new Error("Missing or invalid environment variable: NODE_ENV");
+}
+
+/**
+ * Determines if the current environment is development based on the NODE_ENV variable.
+ * @type {boolean} `true` if the environment is development, `false` otherwise.
+ */
+const isDevelopment: boolean = process.env.NODE_ENV === 'development';
 
 /**
  * Validates the presence and types of required environment variables and throws an error if any are missing or invalid.
- * Ensures that DB_USERNAME, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME, and NODE_ENV are set correctly before proceeding.
+ * Ensures that DB_USERNAME, DB_PASSWORD, DB_HOST, DB_PORT and DB_NAME are set correctly before proceeding.
  */
 if (!process.env.DB_USERNAME || typeof process.env.DB_USERNAME !== 'string') {
   throw new Error("Missing or invalid environment variable: DB_USERNAME");
@@ -17,6 +33,10 @@ if (!process.env.DB_HOST || typeof process.env.DB_HOST !== 'string') {
   throw new Error("Missing or invalid environment variable: DB_HOST");
 }
 
+if (process.env.DB_HOST.includes('localhost') && !isDevelopment) {
+  throw new Error("Invalid environment variable: DB_HOST. Localhost is not allowed in production.");
+}
+
 if (!process.env.DB_PORT || isNaN(Number(process.env.DB_PORT))) {
   throw new Error("Missing or invalid environment variable: DB_PORT");
 }
@@ -24,16 +44,6 @@ if (!process.env.DB_PORT || isNaN(Number(process.env.DB_PORT))) {
 if (!process.env.DB_NAME || typeof process.env.DB_NAME !== 'string') {
   throw new Error("Missing or invalid environment variable: DB_NAME");
 }
-
-if (!process.env.NODE_ENV || (process.env.NODE_ENV !== 'development' && process.env.NODE_ENV !== 'production')) {
-  throw new Error("Missing or invalid environment variable: NODE_ENV");
-}
-
-/**
- * Determines if the current environment is development based on the NODE_ENV variable.
- * @type {boolean} `true` if the environment is development, `false` otherwise.
- */
-const isDevelopment: boolean = process.env.NODE_ENV === 'development';
 
 /**
  * Configures and initializes the TypeORM DataSource for connecting to the database.
@@ -55,13 +65,17 @@ const isDevelopment: boolean = process.env.NODE_ENV === 'development';
 export const AppDataSource: DataSource = new DataSource({
   type: 'postgres',
   host: process.env.DB_HOST,
-  port: parseInt(process.env.DB_PORT, 10),
+  port: process.env.DB_PORT,
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   synchronize: isDevelopment,
   logging: isDevelopment,
-  entities: [ /* ExampleProduct */ ],
+  entities: [
+    Root,
+    AuthToken,
+    User
+  ],
   migrations: ['src/database/migrations/*.ts'],
   subscribers: [],
 });

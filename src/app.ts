@@ -1,8 +1,15 @@
 import "reflect-metadata";
 import "dotenv/config";
-import { rootRoute } from "./routes/root.route";
-import { HttpServer } from "./configurations/server";
-import logger from "./utils/logger";
+
+import logger from "./shared/utils/logger";
+import { HttpServer } from "./shared/configurations/server";
+
+import {
+  rootRoute,
+  authRoute,
+  usersRoute,
+  emailRoute
+} from "./modules";
 
 /**
  * Initializes and configures the HTTP server.
@@ -15,7 +22,14 @@ const app = async (): Promise<void> => {
     const server = new HttpServer();
 
     // Adds routes to the server. useRouters is now asynchronous.
-    await server.useRouters([rootRoute()]);
+    await server.useRouters(
+      [
+        rootRoute(),
+        authRoute(),
+        usersRoute(),
+        emailRoute()
+      ]
+    );
 
     // Sets the PORT with a default value of 3000 if the PORT environment variable is not defined.
     const PORT = process.env.PORT;
