@@ -79,6 +79,13 @@ declare global {
              */
             ALLOW_ORIGINS: string;
 
+            /**
+             * Domain name used for cookie settings and CORS configuration
+             * @example 'example.com'
+             * @type {string}
+             */
+            DOMAIN: string;
+
 
             // ===== Rate Limiting Configuration =====
             /**
