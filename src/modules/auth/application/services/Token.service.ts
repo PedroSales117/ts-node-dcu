@@ -296,8 +296,9 @@ export class TokenService {
             }
 
             logger.info('Token validated successfully');
+            const { password, ...userSanitazed } = userValue
             return Ok({
-                user: userValue,
+                user: userSanitazed,
                 is_valid: true,
                 message: 'Token valid.',
                 user_status: {

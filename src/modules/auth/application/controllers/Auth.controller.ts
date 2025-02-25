@@ -172,8 +172,13 @@ export class AuthController {
 
         result.match(
             success => {
+                const responseData = {
+                    is_valid: success.is_valid,
+                    message: success.message,
+                    user_status: success.user_status
+                };
                 logger.info(`GET /auth/validate - Token validated successfully`);
-                reply.status(HttpStatus.OK).send(success);
+                reply.status(HttpStatus.OK).send(responseData);
             },
             error => {
                 this.cookieService.clearAllAuthCookies(reply, email.value ? email.value : 'guest');
@@ -207,6 +212,12 @@ export class AuthController {
             return;
         }
 
+        if (email.isErr() || !email.value) {
+            logger.warn('Email is missing in cookies');
+            reply.status(HttpStatus.BAD_REQUEST).send({ message: "Missing email in cookies" });
+            return;
+        }
+
         logger.info(`POST /auth/logout - Attempting to logout user`);
 
         const result = await this.authService.logout(
@@ -222,6 +233,7 @@ export class AuthController {
                 reply.status(HttpStatus.OK).send(success);
             },
             error => {
+                this.cookieService.clearAllAuthCookies(reply, email.value ? email.value : 'guest');
                 logger.warn(`POST /auth/logout - Logout failed - ${error.message}`);
                 reply.status(HttpStatus.BAD_REQUEST).send({ message: error.message });
             }

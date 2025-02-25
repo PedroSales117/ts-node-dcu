@@ -75,10 +75,6 @@ export class AuthMiddleware {
                 logger.warn('No ID found in user, continuing as guest');
                 this.cookieService.setCookie(reply, 'email', 'guest');
                 return;
-            } else if (!user.role) {
-                logger.warn('No role found in user, continuing as guest');
-                this.cookieService.setCookie(reply, 'email', 'guest');
-                return;
             } else {
                 this.cookieService.setCookie(reply, 'email', user.email);
                 logger.info(`User authenticated: ${user.email}`);

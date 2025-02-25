@@ -18,9 +18,7 @@ export interface TokenValidationResponse {
 export interface UserResult {
     id: string;
     email: string;
-    password?: string;
     full_name?: string | null;
-    role?: string;
     is_active: boolean;
     is_email_verified: boolean;
     email_verification_token?: string | null;
