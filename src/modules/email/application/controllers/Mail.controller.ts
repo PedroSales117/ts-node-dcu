@@ -1,7 +1,7 @@
 import { EmailService } from '../services/Email.service';
 import { MailAdapterFactory } from '../factories/MailAdapter.factory';
-import { AdapterReply, AdapterRequest } from '../../../shared/configurations/adapters/server.adapter';
-import { HttpStatus } from '../../../shared/helpers/http-status.helper';
+import { AdapterReply, AdapterRequest } from '../../../../shared/configurations/adapters/server.adapter';
+import { HttpStatus } from '../../../../shared/helpers/http-status.helper';
 
 /**
  * The EmailController class handles incoming HTTP requests related to email operations

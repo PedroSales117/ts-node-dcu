@@ -1,7 +1,7 @@
 import { RateLimitMiddleware } from "../../../shared/middlewares/RateLimit.middleware";
 import { IRouter } from "../../../shared/router/interfaces/IRouter";
 import { Router } from "../../../shared/router/Router";
-import { EmailController } from "../controllers/Mail.controller";
+import { EmailController } from "../application/controllers/Mail.controller";
 
 /**
  * Creates and returns an email router with predefined routes for sending emails

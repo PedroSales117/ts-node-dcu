@@ -1,5 +1,5 @@
 import nodemailer, { Transporter, SendMailOptions } from 'nodemailer';
-import { Result, Ok, Err } from '../../../shared/core/Result';
+import { Result, Ok, Err } from '../../../../shared/core/Result';
 
 /**
  * MailAdapter provides a generic interface for email services,

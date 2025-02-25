@@ -1,5 +1,5 @@
-import { Err, Ok, Result } from "../../../shared/core/Result";
-import logger from "../../../shared/utils/logger";
+import { Err, Ok, Result } from "../../../../shared/core/Result";
+import logger from "../../../../shared/utils/logger";
 import { MailAdapter } from "../adapters/mail.adapter";
 
 /**
