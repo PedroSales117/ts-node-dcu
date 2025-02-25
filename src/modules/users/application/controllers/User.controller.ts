@@ -1,10 +1,10 @@
 import logger from "../../../../shared/utils/logger";
 import { UserService } from "../services/User.service";
 import { UserServiceFactory } from "../factories/User.factory";
-import { CookieService } from "../services/Cookie.service";
 import { HttpStatus } from "../../../../shared/helpers/http-status.helper";
 import { AdapterRequest, AdapterReply } from "../../../../shared/configurations/adapters/server.adapter";
 import { ICreateUserRequest, IUpdateUserRequest, IUpdatePasswordRequest } from "../../domain/dtos/user.dto";
+import { CookieService } from "../../../../shared/services/Cookie.service";
 
 /**
  * UserController handles HTTP requests for user-related operations.

@@ -2,7 +2,6 @@ import { Err, Ok, Result } from "../../../shared/core/Result";
 import logger from "../../../shared/utils/logger";
 import { MailAdapter } from "../adapters/mail.adapter";
 
-
 /**
  * Service for handling email-related operations.
  * It relies on an adapter to send emails, making it flexible and testable.

@@ -15,7 +15,7 @@ export type Result<T, E> = R<T, E>;
  *
  * @type {ResultAsync<T, E>} The generic ResultAsync type, where `T` is the type of the success value and `E` is the type of the error.
  */
-export const ResultAsync = RAsync;
+export const ResultAsync: typeof RAsync = RAsync;
 
 /**
  * Re-exports the `ok` function from the `neverthrow` package, providing a convenient way to create a `Result` instance representing success.

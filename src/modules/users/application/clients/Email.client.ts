@@ -12,7 +12,11 @@ interface VerificationEmailData {
 }
 
 export class EmailClient {
-    constructor(private readonly emailService: EmailService) { }
+    private readonly emailService: EmailService;
+
+    constructor(emailService: EmailService) {
+        this.emailService = emailService;
+    }
 
     /**
      * Sends a generic email using the email service.

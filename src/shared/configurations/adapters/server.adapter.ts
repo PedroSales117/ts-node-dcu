@@ -1,10 +1,11 @@
 import Fastify, { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 import fastifyJwt from '@fastify/jwt';
-import { IRouter, IUseCallback } from '../../interfaces';
 import { Result, Ok, Err } from '../../core/Result';
 import { AppDataSource } from '../../../ormconfig';
 import logger from '../../utils/logger';
 import fastifyCookie from '@fastify/cookie';
+import { IUseCallback } from '../interfaces/IFastifyCallback';
+import { IRouter } from '../../router/interfaces/IRouter';
 
 /**
  * ServerAdapter provides an abstraction layer over the Fastify framework,

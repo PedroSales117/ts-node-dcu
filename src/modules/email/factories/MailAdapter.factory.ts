@@ -1,4 +1,5 @@
-import { MailAdapter } from '../configurations/adapters/mail.adapter';
+import { MailAdapter } from "../adapters/mail.adapter";
+
 
 /**
  * Factory for creating an instance of MailAdapter.

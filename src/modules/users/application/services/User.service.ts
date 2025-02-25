@@ -5,6 +5,8 @@ import { Err, Ok, Result, ResultAsync } from '../../../../shared/core/Result';
 import { EmailClient } from '../clients/Email.client';
 import logger from '../../../../shared/utils/logger';
 import { validateUpdates } from '../utils/allowed-update-fields';
+import { EmailService } from '../../../email/services/Email.service';
+import { MailAdapterFactory } from '../../../email/factories/MailAdapter.factory';
 
 /**
  * Type representing a sanitized user object without sensitive fields.
@@ -87,7 +89,8 @@ export class UserService {
      * Initializes the UserService and EmailClient for sending emails.
      */
     constructor() {
-        this.emailClient = new EmailClient();
+        const mailAdapter = MailAdapterFactory.create();
+        this.emailClient = new EmailClient(new EmailService(mailAdapter));
     }
 
     /**

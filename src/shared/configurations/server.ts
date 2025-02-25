@@ -1,6 +1,8 @@
 import { ServerAdapter } from "./adapters/server.adapter";
-import { IServer, IRouter, IUseCallback } from "../interfaces";
 import { Result } from "../core/Result";
+import { IServer } from "./interfaces/IServer";
+import { IUseCallback } from "./interfaces/IFastifyCallback";
+import { IRouter } from "../router/interfaces/IRouter";
 
 /**
  * HttpServer implements the IServer interface, delegating server operations
