@@ -124,9 +124,16 @@ export class AuthController {
         );
 
         result.match(
-            tokens => {
+            (tokens) => {
+                this.cookieService.setSessionCookie(reply, tokens.access_token);
+                this.cookieService.setAuthCookie(reply, 'refresh_token', tokens.refresh_token, 30 * 24 * 60 * 60 * 1000);
+
+                if (tokens.remember_me_token) {
+                    this.cookieService.setAuthCookie(reply, 'remember_me_token', tokens.remember_me_token, 30 * 24 * 60 * 60 * 1000);
+                }
+
                 logger.info(`POST /auth/refresh - Token refreshed successfully`);
-                reply.status(HttpStatus.OK).send(tokens);
+                reply.status(HttpStatus.OK).send({ message: 'Token refresh successful' });
             },
             error => {
                 logger.warn(`POST /auth/refresh - Token refresh failed - ${error.message}`);
