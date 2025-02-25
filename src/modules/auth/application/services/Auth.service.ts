@@ -32,7 +32,13 @@ export class AuthService {
                 return Err(new Error('Invalid credentials.'));
             }
 
-            const user_by_id = await this.userService.findUserById(user.value.user.email);
+            const id = await this.userService.getUserId(email);
+            if (!id || id.isErr() || !id.value) {
+                logger.warn(`Login failed. Id not found: ${email}`);
+                return Err(new Error('Invalid credentials.'));
+            }
+
+            const user_by_id = await this.userService.findUserById(id.value);
             if (!user_by_id || user_by_id.isErr() || !user_by_id.value) {
                 logger.warn(`Login failed. User not found: ${email}`);
                 return Err(new Error('Invalid credentials.'));

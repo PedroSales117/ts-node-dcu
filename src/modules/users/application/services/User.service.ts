@@ -446,6 +446,29 @@ export class UserService {
     }
 
     /**
+    * Finds a user by email.
+    * @param email - The email of the user.
+    * @returns A Result object containing the user or an error.
+    */
+    async getUserId(email: string): Promise<Result<string, Error>> {
+        try {
+            logger.info(`Attempting to find user with id: ${email}`);
+            const user = await User.findOne({ where: { email } });
+
+            if (!user) {
+                logger.warn(`Find user failed. User not found with email: ${email}`);
+                return Err(new Error('User not found.'));
+            }
+
+            logger.info(`User retrieved successfully with email: ${email}`);
+            return Ok(user.id);
+        } catch (error) {
+            logger.error(`Error finding user with email: ${email}`, error);
+            return Err(error as Error);
+        }
+    }
+
+    /**
      * Deactivates a user account by setting `is_active` to false.
      * @param email - The Email of the user to deactivate.
      * @returns A Result object indicating success or an error.

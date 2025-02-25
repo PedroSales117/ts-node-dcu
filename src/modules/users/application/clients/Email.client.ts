@@ -44,7 +44,7 @@ export class EmailClient {
      */
     private compileTemplate(templateName: string, replacements: Record<string, any>): string {
         try {
-            const templatePath = path.resolve(__dirname, `../templates/${templateName}.html`);
+            const templatePath = path.resolve(__dirname, '../src/modules/users/templates', `${templateName}.html`);
             const template = fs.readFileSync(templatePath, 'utf-8');
 
             return Object.entries(replacements).reduce(
