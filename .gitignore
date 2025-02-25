@@ -1,7 +1,10 @@
 #DIRECTORIES
 node_modules
 dist
-
+coverage
+build
+data
 
 #ENVIRONMENT
 .env
+.env.*
