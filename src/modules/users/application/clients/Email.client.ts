@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
-import logger from '../../../shared/utils/logger';
-import { EmailService } from '../../email/services/Email.service';
+import logger from '../../../../shared/utils/logger';
+import { EmailService } from '../../../email/services/Email.service';
 
 interface VerificationEmailData {
     full_name: string;

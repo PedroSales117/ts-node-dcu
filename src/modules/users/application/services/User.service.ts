@@ -1,9 +1,9 @@
 import { randomBytes } from 'crypto';
-import { User } from '../domain/entities/User';
+import { User } from '../../domain/entities/User';
 import bcrypt from 'bcryptjs';
-import { Err, Ok, Result, ResultAsync } from '../../../shared/core/Result';
+import { Err, Ok, Result, ResultAsync } from '../../../../shared/core/Result';
 import { EmailClient } from '../clients/Email.client';
-import logger from '../../../shared/utils/logger';
+import logger from '../../../../shared/utils/logger';
 import { validateUpdates } from '../utils/allowed-update-fields';
 
 /**

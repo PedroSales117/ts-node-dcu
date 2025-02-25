@@ -1,5 +1,5 @@
-import { Err, Ok, Result } from "../../../shared/core/Result";
-import { User } from "../domain/entities/User";
+import { Err, Ok, Result } from "../../../../shared/core/Result";
+import { User } from "../../domain/entities/User";
 
 export type AllowedUpdates = Omit<User, 'id' | 'email' | 'password' | 'role' | 'email_verification_code' | 'email_verification_expires_at'>;
 

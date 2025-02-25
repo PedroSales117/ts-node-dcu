@@ -1,7 +1,7 @@
 import { RootService } from "../services/Root.service";
-import { HttpStatus } from "../../../../shared/helpers/http-status.helper";
+import { HttpStatus } from "../../../../../../shared/helpers/http-status.helper";
 import { RootServiceFactory } from '../factories/Root.factory';
-import { AdapterReply, AdapterRequest } from "../../../../shared/configurations/adapters/server.adapter";
+import { AdapterReply, AdapterRequest } from "../../../../../../shared/configurations/adapters/server.adapter";
 import { IRootRequest } from "../../routes/interfaces/IRootRequest";
 
 /**

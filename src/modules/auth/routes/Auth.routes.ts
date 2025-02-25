@@ -1,7 +1,7 @@
 import { RateLimitMiddleware } from "../../../shared/middlewares/RateLimit.middleware";
 import { IRouter } from "../../../shared/router/interfaces/IRouter";
 import { Router } from "../../../shared/router/Router";
-import { AuthController } from "../controllers/Auth.controller";
+import { AuthController } from "../application/controllers/Auth.controller";
 
 /**
  * Creates and returns an authentication router with predefined routes for login,

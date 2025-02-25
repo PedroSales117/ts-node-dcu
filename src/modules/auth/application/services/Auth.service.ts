@@ -1,10 +1,10 @@
-import { Result, Ok, Err } from '../../../shared/core/Result';
+import { Result, Ok, Err } from '../../../../shared/core/Result';
 import { TokenService } from './Token.service';
 import { TokenResponse } from './types/types';
-import logger from '../../../shared/utils/logger';
+import logger from '../../../../shared/utils/logger';
 import bcrypt from 'bcryptjs';
-import { UserService } from '../../users/services/User.service';
-import { AuthToken } from '../domain/entities/AuthToken';
+import { UserService } from '../../../users/application/services/User.service';
+import { AuthToken } from '../../domain/entities/AuthToken';
 
 export class AuthService {
     private readonly Auth = AuthToken;

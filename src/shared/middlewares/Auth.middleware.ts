@@ -1,7 +1,7 @@
 import logger from '../utils/logger';
 import { CookieService } from '../services/Cookie.service';
 import { AdapterReply, AdapterRequest } from '../configurations/adapters/server.adapter';
-import { AuthService } from '../../modules/auth/services/Auth.service';
+import { AuthService } from '../../modules/auth/application/services/Auth.service';
 
 /**
  * Middleware responsible for handling authentication and session management.

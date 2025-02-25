@@ -1,10 +1,10 @@
 import jwt from 'jsonwebtoken';
-import { AuthToken } from '../domain/entities/AuthToken';
-import { TokenPayload } from '../domain/dto/auth.dto';
-import { Result, Ok, Err } from '../../../shared/core/Result';
+import { AuthToken } from '../../domain/entities/AuthToken';
+import { TokenPayload } from '../../domain/dto/auth.dto';
+import { Result, Ok, Err } from '../../../../shared/core/Result';
 import { TOKEN_TYPES, TokenValidationResponse, UserResult } from './types/types';
-import logger from '../../../shared/utils/logger';
-import { UserService } from '../../users/services/User.service';
+import logger from '../../../../shared/utils/logger';
+import { UserService } from '../../../users/application/services/User.service';
 
 export class TokenService {
     private readonly Auth = AuthToken;

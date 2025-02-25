@@ -1,5 +1,5 @@
 import { DataSource } from 'typeorm';
-import { Root } from './modules/root/domain/entities/Root';
+import { Root } from './modules/auth/application/root/domain/entities/Root';
 import { AuthToken } from './modules/auth/domain/entities/AuthToken';
 import { User } from './modules/users/domain/entities/User';
 

@@ -1,5 +1,5 @@
 import { RootDTO } from '../../domain/dto/root.dto';
-import { ResultAsync } from '../../../../shared/core/Result';
+import { ResultAsync } from '../../../../../../shared/core/Result';
 
 /**
  * The RootAdapter class handles operations related to the root status of the application.

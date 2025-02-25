@@ -1,8 +1,8 @@
 import { IRouter } from "../../../shared/interfaces";
-import { Router } from "../../../shared/router/Router";
+import { Router } from "../../../../../shared/router/Router";
 import { RootController } from "../application/controllers/root.controller";
-import { AuthMiddleware } from "../../../shared/middlewares/Auth.middleware";
-import { AdapterRequest, AdapterReply } from "../../../shared/configurations/adapters/server.adapter";
+import { AuthMiddleware } from "../../../../../shared/middlewares/Auth.middleware";
+import { AdapterRequest, AdapterReply } from "../../../../../shared/configurations/adapters/server.adapter";
 
 /**
  * Creates and returns a root router with a predefined route for checking service status.

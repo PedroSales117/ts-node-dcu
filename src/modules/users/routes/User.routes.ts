@@ -3,7 +3,7 @@ import { AuthMiddleware } from "../../../shared/middlewares/Auth.middleware";
 import { RateLimitMiddleware } from "../../../shared/middlewares/RateLimit.middleware";
 import { IRouter } from "../../../shared/router/interfaces/IRouter";
 import { Router } from "../../../shared/router/Router";
-import { UserController } from "../controllers/User.controller";
+import { UserController } from "../application/controllers/User.controller";
 
 /**
  * Creates and returns a router configured with user-related routes.
