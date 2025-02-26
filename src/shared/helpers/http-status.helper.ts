@@ -28,6 +28,7 @@ export const HttpStatus = Object.freeze({
   TOO_MANY_REQUESTS: StatusCodes.TOO_MANY_REQUESTS,
   UNAUTHORIZED: StatusCodes.UNAUTHORIZED,
   MULTI_STATUS: StatusCodes.MULTI_STATUS,
+  FORBIDDEN: StatusCodes.FORBIDDEN,
 } as const);
 
 /**

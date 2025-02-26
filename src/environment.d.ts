@@ -111,6 +111,38 @@ declare global {
              * @type {number}
              */
             UNAUTH_WINDOW_MINUTES: number;
+
+
+            // ===== Redis Configuration =====
+            /**
+             * Redis server username for authentication.
+             * @type {string}
+             */
+            REDIS_USERNAME: string;
+
+            /**
+             * Redis server password for authentication.
+             * @type {string}
+             */
+            REDIS_PASSWORD: string;
+
+            /**
+             * Redis server host address.
+             * @type {string}
+             */
+            REDIS_HOST: string;
+
+            /**
+             * Redis server port number.
+             * @type {number}
+             */
+            REDIS_PORT: number;
+
+            /**
+             * Prefix for Redis keys to avoid collisions in shared instances.
+             * @type {string}
+             */
+            REDIS_KEYPREFIX: string;
         }
     }
 }
