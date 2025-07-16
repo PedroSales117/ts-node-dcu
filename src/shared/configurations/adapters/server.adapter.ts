@@ -149,7 +149,6 @@ export class ServerAdapter {
 
   /**
    * Registers an array of routers, each containing multiple routes, to the server.
-   * The routes are automatically prefixed with `/api` for consistency.
    * 
    * @param routers - An array of IRouter instances managing multiple routes.
    * @returns A Result indicating success (Ok) or an error message (Err).
@@ -172,7 +171,7 @@ export class ServerAdapter {
 
           this.server.route({
             method: route.method, // The HTTP method (GET, POST, DELETE, etc.).
-            url: `/api${route.path}`, // Prepend "/api" to all routes.
+            url: route.path,
             preHandler: route.middlewares || [], // Attach any middlewares to the route.
             handler: route.handler, // The main handler for processing requests.
           });

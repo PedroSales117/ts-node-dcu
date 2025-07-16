@@ -31,4 +31,10 @@ export interface IRateLimitStorage {
      * @returns A promise that resolves when the record has been reset.
      */
     resetRecord(ip: string): Promise<void>;
+
+    /**
+     * Cleans up old rate limit records that are no longer needed.
+     * @returns A promise that resolves when old records have been cleaned up.
+     */
+    cleanupOldRecords(): Promise<void>;
 }
