@@ -2,6 +2,14 @@ import { DataSource } from 'typeorm';
 import { Root } from './modules/auth/application/root/domain/entities/Root';
 import { AuthToken } from './modules/auth/domain/entities/AuthToken';
 import { User } from './modules/users/domain/entities/User';
+import { Ability } from './modules/dcu/domain/entities/Ability';
+import { AbilityRegistry } from './modules/dcu/domain/entities/AbilityRegistry';
+import { Affiliation } from './modules/dcu/domain/entities/Affiliation';
+import { AffiliationMember } from './modules/dcu/domain/entities/AffiliationMember';
+import { Individual } from './modules/dcu/domain/entities/Individual';
+import { InvolvementLog } from './modules/dcu/domain/entities/InvolvementLog';
+import { ProjectIncident } from './modules/dcu/domain/entities/ProjectIncident';
+import { Location } from './modules/dcu/domain/entities/Location';
 
 /**
  * Validates the presence and types of required environment variable and throws an error if missing or invalid.
@@ -74,7 +82,15 @@ export const AppDataSource: DataSource = new DataSource({
   entities: [
     Root,
     AuthToken,
-    User
+    User,
+    Ability,
+    AbilityRegistry,
+    Affiliation,
+    AffiliationMember,
+    Individual,
+    InvolvementLog,
+    Location,
+    ProjectIncident
   ],
   migrations: ['src/database/migrations/*.ts'],
   subscribers: [],
