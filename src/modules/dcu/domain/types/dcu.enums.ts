@@ -21,6 +21,8 @@ export enum IncidentType {
     METAHUMAN_INCIDENT = 'Metahuman Incident',
     EXTINCTION_LEVEL_EVENT = 'Extinction-Level Event',
     SUPERNATURAL_PHENOMENON = 'Supernatural Phenomenon',
+    RECONNAISSANCE = 'Reconnaissance',
+    RESCUE_OPERATION = 'Rescue Operation',
 }
 
 export enum IncidentResult {
@@ -36,4 +38,23 @@ export enum MasteryLevel {
     CONTROLLED = 'Controlled',
     PERFECTED = 'Perfected',
     UNSTABLE = 'Unstable',
+}
+
+export enum AffiliationType {
+    HERO_TEAM = 'Hero Team',
+    VILLAIN_ORGANIZATION = 'Villain Organization',
+    GOVERNMENT_AGENCY = 'Government Agency',
+    CORPORATION = 'Corporation',
+    CRIMINAL_SYNDICATE = 'Criminal Syndicate',
+    NEUTRAL_FACTION = 'Neutral Faction',
+}
+
+export enum LocationType {
+    PLANET = 'Planet',
+    CITY = 'City',
+    COUNTRY = 'Country',
+    BASE_OF_OPERATIONS = 'Base of Operations',
+    ALTERNATE_DIMENSION = 'Alternate Dimension',
+    SPACE_STATION = 'Space Station',
+    HIDDEN_LOCATION = 'Hidden Location',
 }

@@ -1,8 +1,9 @@
 import { Entity, PrimaryColumn, Column, BaseEntity, Generated, ManyToOne, OneToMany, CreateDateColumn, UpdateDateColumn } from 'typeorm';
-import { IsUUID, IsString, IsOptional } from 'class-validator';
+import { IsUUID, IsString, IsOptional, IsEnum } from 'class-validator';
 import { Individual } from './Individual';
 import { Location } from './Location';
 import { AffiliationMember } from './AffiliationMember';
+import { AffiliationType } from '../types/dcu.enums';
 
 @Entity('affiliations')
 export class Affiliation extends BaseEntity {
@@ -14,10 +15,22 @@ export class Affiliation extends BaseEntity {
     @Column('varchar', { unique: true })
     @IsString()
     name!: string;
+
+    @Column({ type: 'enum', enum: AffiliationType, default: AffiliationType.NEUTRAL_FACTION })
+    @IsEnum(AffiliationType)
+    affiliation_type!: AffiliationType;
     
     @Column('text')
     @IsString()
     modus_operandi!: string;
+
+    @Column('text', { nullable: true })
+    @IsString()
+    @IsOptional()
+    mission_statement?: string;
+
+    @Column('boolean', { default: true })
+    is_active!: boolean;
 
     @ManyToOne(() => Individual, { nullable: true })
     @IsOptional()

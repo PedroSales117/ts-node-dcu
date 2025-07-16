@@ -1,5 +1,5 @@
 import { Entity, PrimaryColumn, Column, BaseEntity, Generated, OneToMany, ManyToOne, CreateDateColumn, UpdateDateColumn } from 'typeorm';
-import { IsUUID, IsString, IsArray, IsEnum, IsOptional } from 'class-validator';
+import { IsUUID, IsString, IsArray, IsEnum, IsOptional, IsDate } from 'class-validator';
 import { ThreatLevel, BiologicalStatus } from '../types/dcu.enums';
 import { Location } from './Location';
 import { AffiliationMember } from './AffiliationMember';
@@ -17,6 +17,11 @@ export class Individual extends BaseEntity {
     @IsString()
     primary_designation!: string;
 
+    @Column('varchar', { nullable: true })
+    @IsString()
+    @IsOptional()
+    civilian_identity?: string;
+
     @Column('simple-array', { nullable: true })
     @IsArray()
     @IsOptional()
@@ -25,6 +30,11 @@ export class Individual extends BaseEntity {
     @Column('varchar')
     @IsString()
     species!: string;
+
+    @Column('varchar', { nullable: true })
+    @IsString()
+    @IsOptional()
+    profession?: string;
 
     @Column({ type: 'enum', enum: BiologicalStatus, default: BiologicalStatus.UNKNOWN })
     @IsEnum(BiologicalStatus)
@@ -38,9 +48,23 @@ export class Individual extends BaseEntity {
     @IsEnum(ThreatLevel)
     threat_level!: ThreatLevel;
 
+    @Column('date', { nullable: true })
+    @IsDate()
+    @IsOptional()
+    first_appearance?: Date;
+
+    @Column('text', { nullable: true })
+    @IsString()
+    @IsOptional()
+    notes?: string;
+
     @ManyToOne(() => Location, { nullable: true, eager: true })
     @IsOptional()
     origin_planet?: Location;
+
+    @ManyToOne(() => Location, { nullable: true })
+    @IsOptional()
+    current_location?: Location;
 
     @OneToMany(() => AffiliationMember, member => member.individual)
     affiliations!: AffiliationMember[];
