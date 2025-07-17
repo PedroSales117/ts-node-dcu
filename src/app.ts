@@ -10,6 +10,7 @@ import {
   usersRoute,
   emailRoute
 } from "./modules";
+import { dcuRoute } from "./modules/dcu/routes/dcu.routes";
 
 /**
  * Initializes and configures the HTTP server.
@@ -27,7 +28,8 @@ const app = async (): Promise<void> => {
         rootRoute(),
         authRoute(),
         usersRoute(),
-        emailRoute()
+        emailRoute(),
+        dcuRoute(),
       ]
     );
 
